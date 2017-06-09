@@ -25,9 +25,17 @@ public class Wuerfelbecher {
 
 		System.out.println(wuerfelbecher);
 		scan = new Scanner(System.in);
-		System.out.println("Welche Würfel wollen sie behalten?");
+		System.out.println("Welche Würfel wollen sie erneut würfeln?");
 		System.out.println("Drücken sie 0 für weiter und x für abbruch");
 
+		switch (scan.nextLine()) {
+		case "1":
+			
+			break;
+
+		default:
+			break;
+		}
 	}
 
 }
