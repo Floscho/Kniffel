@@ -1,26 +1,25 @@
 package de.bbq.schwaiger.kniffel;
 
 import java.util.ArrayList;
-import java.util.Random;
 import java.util.Scanner;
 
 public class SpielStart {
 
 	Scanner scan = null;
 	int anzahl = 0;
-	int wuerfel;
-	ArrayList<String> spielername = new ArrayList<>();
-	Random r = new Random();
+	ArrayList<Spieler> spielerliste = new ArrayList<>();
+	
 
 	public SpielStart() {
 		this.Spielerabfrage();
 		this.Spielernamen();
+		Tisch tisch = new Tisch();
+		tisch.WuerfelErgebnis();
+		spielerliste.get(0).setDreier(6);
 		this.Block();
-		System.out.println(spielername.get(r.nextInt(spielername.size()))+ " darf beginnen!");
 		
-		this.Wuerfelbecher();
 		// testausgabe
-		//System.out.println(spielername);
+		
 
 	}
 
@@ -35,44 +34,36 @@ public class SpielStart {
 		int count = 1;
 		this.scan = new Scanner(System.in);
 		for (int i = 1; i < anzahl + 1; i++) {
+			Spieler spieler = new Spieler();
 			System.out.println("Name des " + count + ". Spielers");
-			spielername.add(this.scan.nextLine());
+			spieler.setSpielername(this.scan.nextLine());
+			spielerliste.add(spieler);
 			count++;
 		}
 	}
 
-	public void Wuerfelbecher() {
-		ArrayList<Integer> wuerfelbecher = new ArrayList<>();
-		int minimum = 1;
-		int maximum = 6;
-
-		for (int i = 0; i < 4; i++) {
-			wuerfel = minimum + (int) (Math.random() * maximum);
-			wuerfelbecher.add(this.wuerfel);
-		}
-		System.out.println(wuerfelbecher);
-
-	}
 	public void Block() {
-		System.out.println("\t\t" + spielername.get(0) + "\t" + spielername.get(1) +
-				"\t" + spielername.get(2) + "\t" + spielername.get(3));
-		System.out.println("Einser");
-		System.out.println("Zweier");
-		System.out.println("Dreier");
-		System.out.println("Vierer");
-		System.out.println("Fünfer");
-		System.out.println("Sechser");
-		System.out.println("Bonus");
-		System.out.println("Dreierpasch");
-		System.out.println("Vierpasch");
-		System.out.println("Full House");
-		System.out.println("Kleine Straße");
-		System.out.println("Große Straße");
-		System.out.println("Kniffel");
-		System.out.println("Kniffel Bonus");
-		System.out.println("Chance");
-		System.out.println("Punkte");
-		
+		int count = 0;
+		for (int i = 1; i < anzahl + 1; i++) {
+			System.out.println("\t\t" + spielerliste.get(0 + count).getSpielername());
+			System.out.println("");
+			System.out.println("Einser" + "\t\t " + spielerliste.get(0 + count).getEinser());
+			System.out.println("Zweier" + "\t\t " + spielerliste.get(0 + count).getZweier());
+			System.out.println("Dreier" + "\t\t " + spielerliste.get(0 + count).getDreier());
+			System.out.println("Vierer" + "\t\t " + spielerliste.get(0 + count).getVierer());
+			System.out.println("Fünfer" + "\t\t " + spielerliste.get(0 + count).getFuenfer());
+			System.out.println("Sechser" + "\t\t " + spielerliste.get(0 + count).getSechser());
+			System.out.println("Bonus" + "\t\t " + spielerliste.get(0 + count).getBonus());
+			System.out.println("Dreierpasch" + "\t " + spielerliste.get(0 + count).getDreierpasch());
+			System.out.println("Vierpasch" + "\t " + spielerliste.get(0 + count).getViererpasch());
+			System.out.println("Full House" + "\t " + spielerliste.get(0 + count).getFullHouse());
+			System.out.println("Kleine Straße" + "\t " + spielerliste.get(0 + count).getKleineStrasse());
+			System.out.println("Große Straße" + "\t " + spielerliste.get(0 + count).getGrosseStrasse());
+			System.out.println("Kniffel" + "\t\t " + spielerliste.get(0 + count).getKniffel());
+			System.out.println("Kniffel Bonus" + "\t " + spielerliste.get(0 + count).getKniffelBonus());
+			System.out.println("Chance" + "\t\t " + spielerliste.get(0 + count).getChance());
+			System.out.println("Gesamtsumme" + "\t " + spielerliste.get(0 + count).getGesamtsumme());
+			count++;
+		}
 	}
-
 }
